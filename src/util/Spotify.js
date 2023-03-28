@@ -1,6 +1,6 @@
 let userToken = '';
-const clientID = '';
-const redirectURI = '';
+const clientID = '112d0440356e46468165339a7472b10d';
+const redirectURI = 'http://starsky-jimmming.surge.sh';
 
 const Spotify= {
     getAccessToken() {
