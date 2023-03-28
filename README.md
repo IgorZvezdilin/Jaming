@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)![Spotify](https://img.shields.io/badge/Spotify-1ED760?style=for-the-badge&logo=spotify&logoColor=white)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-----
 
-## Available Scripts
+# Jaming App
 
-In the project directory, you can run:
+This project is a first my project where i use React. If you want to use it, you must have account on Spotify. If Spotify does not working in you country, i recommend you to use VPN.
+The goal of this project is pratice and imporve my hard skills. I believe you will enjoy using my App.
 
-### `npm start`
+## How I can use it?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Go to this [link](http://starsky-jimmming.surge.sh/).
+- Log in to your Spotify account.
+- Enjoy!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Search song by title, album or artist
+- Listen to a sample
+- Add the song to your playlist
+- Remove the song from your playlist
+- Change a name of your playlist
+- Add a resulting playlist to your Spotify account
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Spotify API Reference
 
-### `npm run build`
+I create get and post request with using fetch JS library. So I add only field which i use in fetch request.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You need client ID and redirect URI to get access token and then work with Spotify API. You get these parameters when you sign up at Spotify for developers.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Get list of search results
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```http
+  GET EndPoint/search?type=track&q=${term}
 
-### `npm run eject`
+  Authorization: Bearer ${access token} 
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Parameter              | Type     | Description                                        |
+| :--------------------- | :------- | :------------------------------------------------- |
+| `access token`, `term` | `string` | **Required**. Your access token and search`s term  |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Get User ID
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```http
+  GET EndPoint/me
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  Authorization: Bearer ${access token} 
+```
 
-## Learn More
+| Parameter      | Type     | Description                     |
+| :------------- | :------- | :------------------------------ |
+| `access token` | `string` | **Required**. Your access token |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Post playlist name
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```http
+  POST /Endpoint/users/${userID/playlist}
 
-### Code Splitting
+  Authorization: Bearer ${access token}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  name: ${playlistName}
+```
 
-### Analyzing the Bundle Size
+| Parameter                                              | Type     | Description                                        |
+| :----------------------------------------------------- | :------- | :------------------------------------------------- |
+| `access token`, `playlist name`, `user ID` | `string` | **Required**. Your access token, playlist name and user ID |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Post tracks in the playlist
 
-### Making a Progressive Web App
+```http
+  POST /Endpoint/users/${userID}/playlist/${playlistID}/tracks
+  
+  Authorization: Bearer ${access token}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  uris: ${arrayOfURIs}  
+```
 
-### Advanced Configuration
+| Parameter                                              | Type     | Description                                        |
+| :----------------------------------------------------- | :------- | :------------------------------------------------- |
+| `access token`, `playlist ID`, `user ID`, `arrayOfURIs` | `string` | **Required**. Your access token, playlist ID, user ID and array of track`s URIs |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Acknowledgements
 
-### Deployment
+ - [README.so](https://readme.so/ru/editor)
+ - [StackOverflow](https://stackoverflow.com/)
+ - [Shields.io](https://shields.io/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
